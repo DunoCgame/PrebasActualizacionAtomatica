@@ -1,6 +1,6 @@
 {
   "name": "electron-auto-update-example",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "",
   "main": "main.js",
   "repository": {
@@ -21,6 +21,15 @@
       "target": "NSIS"
     }
   },
+  "publish": [
+    {
+      "provider": "github",
+      "private": false,
+      "owner": "DunoCgame",
+      "repo": "PrebasActualizacionAtomatica",
+      "token": "b4f070f096c08afbd96ec80529ad170671a1e919"
+    }
+  ],
   "devDependencies": {
     "electron": "^5.0.1",
     "electron-builder": "^20.40.2"
