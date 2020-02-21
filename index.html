@@ -7,9 +7,12 @@
       margin: 0;
       padding: 20px;
       font-family: sans-serif;
-      background-color: #eaeaea;
+     background: #6600cc;
       text-align: center;
     }
+	h1{
+	color:white;
+	}
     #notification {
       position: fixed;
       bottom: 20px;
@@ -23,63 +26,67 @@
     .hidden {
       display: none;
     }
-	
-	h1{
-	background:blue;
-	color:yellow;
-	}
-	
 	#version{
 	font-size:30px;
-	color:green;
-	
+	color:white;
 	}
   </style>
 </head>
-<body>
+<body class="body">
   <h1>Electron Auto Update Example</h1>
+  <h1>Actualizacion Manual</h1>
   <p id="version"></p>
+  <div class="l"></div>
   <div id="notification" class="hidden">
     <p id="message"></p>
     <button id="close-button" onClick="closeNotification()">
       Close
     </button>
-    <button id="restart-button" onClick="restartApp()" class="hidden">
-      Restart
-    </button>
+    <!-- <button id="restart-button" onClick="restartApp()" class="hidden"> -->
+      <!-- Restart -->
+    <!-- </button> -->
   </div>
   <script>
+  /*Obtener datos */
     const { ipcRenderer } = require('electron');
     const version = document.getElementById('version');
     const notification = document.getElementById('notification');
     const message = document.getElementById('message');
     const restartButton = document.getElementById('restart-button');
-    
+      /*Obtener datos */
+	    /*obtener Vercion */
     ipcRenderer.send('app_version');
     ipcRenderer.on('app_version', (event, arg) => {
       ipcRenderer.removeAllListeners('app_version');
       version.innerText = 'Version ' + arg.version;
     });
+	/*obtener Vercion */
 
-    ipcRenderer.on('update_available', () => {
-      ipcRenderer.removeAllListeners('update_available');
-      message.innerText = 'A new update is available. Downloading now...';
-      notification.classList.remove('hidden');
-    });
+	/*Indicar Nueva vercion existente */
+    <!-- ipcRenderer.on('update_available', () => { -->
+      <!-- ipcRenderer.removeAllListeners('update_available'); -->
+      <!-- message.innerText = 'A new update is available. Downloading now...'; -->
+      <!-- notification.classList.remove('hidden'); -->
+    <!-- }); -->
 
-    ipcRenderer.on('update_downloaded', () => {
-      ipcRenderer.removeAllListeners('update_downloaded');
-      message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
-      restartButton.classList.remove('hidden');
-      notification.classList.remove('hidden');
-    });
-
-    function closeNotification() {
-      notification.classList.add('hidden');
-    }
+	/*Indicar descarga de Nueva vercion existente */
+    <!-- ipcRenderer.on('update_downloaded', () => { -->
+      <!-- ipcRenderer.removeAllListeners('update_downloaded'); -->
+      <!-- message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?'; -->
+      <!-- restartButton.classList.remove('hidden'); -->
+      <!-- notification.classList.remove('hidden'); -->
+    <!-- }); -->
+	
+/*Botones de control*/
+	
+    <!-- function closeNotification() { -->
+      <!-- notification.classList.add('hidden'); -->
+    <!-- } -->
     
-    function restartApp() {
-      ipcRenderer.send('restart_app');
-    }
+    <!-- function restartApp() { -->
+      <!-- ipcRenderer.send('restart_app'); -->
+    <!-- } -->
   </script>
+  <script src="./index.js" >  </script>
+  <script src="./MenuRender.js" >  </script>
 </body>
